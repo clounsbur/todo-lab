@@ -1,0 +1,51 @@
+<body>
+  <main>
+    <h3>You Have So Much to Do</h3>
+    <p>
+      This is a place to store your to-dos so that maybe you'll actually do some
+      of them.
+    </p>
+
+    <input
+      type="text"
+      placeholder=" Filter your to-dos"
+      [(ngModel)]="searchText"
+      name="filterInput"
+    />
+    <!-- instead of s ampleToDo use a function which returns an array of ToDos blogpost angular demo using test to filter -->
+    <ol>
+      <li *ngFor="let item of getFilteredTodos">
+        <button
+          *ngIf="!task.completed"
+          (click)="completeTask(task)"
+          class="complete"
+        >
+          Complete
+        </button>
+        <span [class.active]="task.completed">{{ task.task }}</span>
+        <button (click)="removeTask(task)" class="x">X</button>
+      </li>
+      <!-- </ng-container> -->
+    </ol>
+    <form (ngSubmit)="addTask()">
+      <label for="task"></label>
+      <input
+        id="task"
+        type="text"
+        [(ngModel)]="addNewTask.task"
+        name="task"
+        placeholder="  Add your to-do"
+      />
+      <button type="submit" class="add">Add</button>
+    </form>
+  </main>
+</body>
+
+<!-- The ngForOf directive must be used.
+● You must be able to dynamically style todo items (strikethrough when an item is
+completed)
+● The ngIf directive must be used to remove the button “complete” button for completed
+todos.
+● “x” buttons, “complete” buttons, the two inputs, and the “Add” button are all
+non-functional for now. Add them to the HTML and style them. We will make them work
+in the next lab -->
